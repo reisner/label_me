@@ -13,6 +13,7 @@
 ActiveRecord::Schema[8.0].define(version: 2025_01_13_194845) do
   create_table "images", force: :cascade do |t|
     t.string "name", null: false
+    t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

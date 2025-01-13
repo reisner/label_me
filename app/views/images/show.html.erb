@@ -1,6 +1,20 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @image %>
+<div id="<%= dom_id @image %>">
+  <p>
+    <strong>Name:</strong>
+    <%= @image.name %>
+  </p>
+
+  <p>
+    <%= link_to image_tag(@image.image_file.variant(:thumb)), @image.image_file, target: :_blank %>
+  </p>
+
+  <p>
+    <strong>Notes:</strong>
+    <%= @image.notes %>
+  </p>
+</div>
 
 <div>
   <%= link_to "Edit this image", edit_image_path(@image) %> |

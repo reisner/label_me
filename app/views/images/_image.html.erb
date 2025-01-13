@@ -4,4 +4,13 @@
     <%= image.name %>
   </p>
 
+  <p>
+    <%= link_to image_tag(image.image_file.variant(:thumb)), image.image_file, target: :_blank %>
+  </p>
+
+  <p>
+    <strong>Notes:</strong>
+    <%= image.notes %>
+  </p>
+
 </div>

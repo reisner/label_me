@@ -65,6 +65,6 @@ class ImagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def image_params
-      params.expect(image: [ :name ])
+      params.expect(image: [ :name, :image_file ])
     end
 end

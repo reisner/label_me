@@ -70,16 +70,12 @@ class ImagesController < ApplicationController
   end
 
   def save_labels
-    # if current_user = @photo.labeller
-    #   photo_labels_attributes = params.has_key?(:photo) ? label_params[:photo_labels_attributes] : []
-    #   if @photo.save_labels(photo_labels_attributes, current_user)
-    #     redirect_to photo_url(@photo), notice: "Labels were successfully saved."
+    #   image_labels_attributes = params.has_key?(:image) ? label_params[:image_labels_attributes] : []
+    #   if @image.save_labels(image_labels_attributes, current_user)
+    #     redirect_to image_url(@image), notice: "Labels were successfully saved."
     #   else
-    #     redirect_to photo_url(@photo), alert: "An error was encountered while saving Labels."
+    #     redirect_to image_url(@image), alert: "An error was encountered while saving Labels."
     #   end
-    # else
-    #   redirect_to "/", alert: "You are not the labeller for this Photo."
-    # end
   end
 
 

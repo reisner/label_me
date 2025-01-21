@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="label-photo"
+// Connects to data-controller="label-image"
 export default class extends Controller {
   static targets = ["template", "label_row", "label_header"]
 
@@ -9,13 +9,11 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log("HI")
     var label_form_template = this.templateTarget.innerHTML; 
     var label_table_row_template = this.label_rowTarget.innerHTML;
     var label_table_header_template = this.label_headerTarget.innerHTML;
     var image_path = this.element.dataset.image
     var labels = JSON.parse(this.element.dataset.labels)
-    console.log(this.element.dataset.entries)
     var existing_entries = JSON.parse(this.element.dataset.entries)
     var color_list = Array.from({length: labels.length}, () => "red")
 

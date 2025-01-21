@@ -3,12 +3,12 @@
 
   <p>Click and drag on the image below to tag symbols.</p>
 
-  <div data-controller="label-photo" data-image="<%= url_for @image.image_file.variant(:labelling) %>" data-labels="<%= @labels.to_s %>" data-entries="<%= @image_labels_json %>">
-    <%= image_tag(@image.image_file.variant(:labelling)) %>
+  <div data-controller="label-image" data-image="<%= url_for @image.image_file.variant(:labelling) %>" data-labels="<%= @labels.to_s %>" data-entries="<%= @image_labels_json %>">
+    <div id="bbox_annotator"></div>
 
     <%= form_for @image, method: :post, :url => save_labels_image_url(@image) do |form| %>
-      <template data-label-photo-target='template'>
-        <%= form.fields_for :photo_labels, ImageLabel.new, child_index: 'TEMPLATE_RECORD' do |label| %>
+      <template data-label-image-target='template'>
+        <%= form.fields_for :image_labels, ImageLabel.new, child_index: 'TEMPLATE_RECORD' do |label| %>
           <%= label.hidden_field :label_name, value: "LABEL_SYMBOL" %>
           <%= label.hidden_field :left, value: "LABEL_LEFT" %>
           <%= label.hidden_field :top, value: "LABEL_TOP" %>
@@ -17,16 +17,16 @@
         <% end %>
       </template>
 
-      <template data-label-photo-target='label_header'>
+      <template data-label-image-target='label_header'>
         <%= render "images/labels_table", header: true %>
       </template>
 
-      <template data-label-photo-target='label_row'>
+      <template data-label-image-target='label_row'>
         <%= render "images/labels_table", header: false, image_label: nil %>
       </template>
       
-      <div class="container photo-actions-container" style="margin: 0px">
-        <div class="photo-action-box">
+      <div class="container image-actions-container" style="margin: 0px">
+        <div class="image-action-box">
           <strong>Labelling Results</strong>
           <br><br>
           <div id="labels">
@@ -36,7 +36,7 @@
 
           <div class="buttons-container">
             <%= form.submit "Submit Labels", class: "new-button" %>
-            <button data-action="click->label-photo#reset:prevent" class="delete-button">Remove All Labels</button>
+            <button data-action="click->label-image#reset:prevent" class="delete-button">Remove All Labels</button>
           </div>
         </div>
 

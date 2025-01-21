@@ -1,4 +1,6 @@
 class Image < ApplicationRecord
+  has_many :image_labels
+
   validates_presence_of :name
   validates :image_file, presence: true
 

@@ -1,0 +1,18 @@
+<% if header %>
+  <tr>
+    <th>User</th>
+    <th>Label</th>
+    <th>Left</th>
+    <th>Top</th>
+    <th>Width</th>
+    <th>Height</th>
+  </tr>
+<% else %>
+  <tr>
+    <td><%= image_label ? image_label.label_name : "LABEL" %></td>
+    <td><%= image_label ? image_label.left : "LEFT" %></td>
+    <td><%= image_label ? image_label.top : "TOP" %></td>
+    <td><%= image_label ? image_label.width : "WIDTH" %></td>
+    <td><%= image_label ? image_label.height : "HEIGHT" %></td>
+  </tr>
+<% end %>

@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-  before_action :set_image, only: %i[ show edit update destroy ]
+  before_action :set_image, only: %i[ show edit update destroy label save_labels ]
 
   # GET /images or /images.json
   def index
@@ -56,6 +56,32 @@ class ImagesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  def label
+    @labels = [ "A", "B", "C" ]
+    @image_labels_json = @image.image_labels.map do |label|
+      label.as_json(only: [ :left, :top, :width, :height ]).merge({
+        "label": label.symbol_entry.name,
+        "color": "red"
+      })
+    end
+    @image_labels_json = @image_labels_json.to_json
+  end
+
+  def save_labels
+    # if current_user = @photo.labeller
+    #   photo_labels_attributes = params.has_key?(:photo) ? label_params[:photo_labels_attributes] : []
+    #   if @photo.save_labels(photo_labels_attributes, current_user)
+    #     redirect_to photo_url(@photo), notice: "Labels were successfully saved."
+    #   else
+    #     redirect_to photo_url(@photo), alert: "An error was encountered while saving Labels."
+    #   end
+    # else
+    #   redirect_to "/", alert: "You are not the labeller for this Photo."
+    # end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

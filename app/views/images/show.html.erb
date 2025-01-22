@@ -11,14 +11,22 @@
   </p>
 
   <p>
+    <strong>Labels:</strong>
+    <% @image.image_labels.each do |label| %>
+      <%= label.label_name%>
+    <% end %>
+  </p>
+
+  <p>
     <strong>Notes:</strong>
     <%= @image.notes %>
   </p>
 </div>
 
 <div>
-  <%= link_to "Edit this image", edit_image_path(@image) %> |
-  <%= link_to "Back to images", images_path %>
+  <%= link_to "Edit this image", edit_image_path(@image) %>
+  <br>
+  <%= link_to "Label this image", label_image_path(@image) %>
 
   <%= button_to "Destroy this image", @image, method: :delete %>
 </div>

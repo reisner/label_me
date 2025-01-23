@@ -59,7 +59,7 @@ class ImagesController < ApplicationController
 
 
   def label
-    @labels = Labels.label_list
+    @labels = Rails.configuration.x.labels
     @image_labels_json = @image.image_labels.map do |label|
       label.as_json(only: [ :left, :top, :width, :height ]).merge({
         "label": label.label_name,

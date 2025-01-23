@@ -33,4 +33,7 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+# Custom labels file
+/config/labels.txt
+
 .DS_Store

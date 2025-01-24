@@ -13,5 +13,6 @@
     </tbody>
   </table>
 </div>
+<%== pagy_nav(@pagy) if @pagy.pages > 1 %>
 
 <%= link_to "New image", new_image_path %>

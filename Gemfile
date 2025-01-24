@@ -69,3 +69,5 @@ group :test do
 end
 
 # gem install nio4r -v 2.5.8 -- --with-cflags="-Wno-incompatible-pointer-types"
+
+gem "pagy", "~> 9.3"

@@ -13,6 +13,5 @@ Small Rails app for labelling images.
 
 ## TODO
 
-* Pagination
 * Bulk upload
 * Show page - show labels

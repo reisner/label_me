@@ -5,6 +5,6 @@ FactoryBot.define do
     top { 1 }
     width { 1 }
     height { 1 }
-    image { nil }
+    image
   end
 end

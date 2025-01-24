@@ -17,3 +17,4 @@ Small Rails app for labelling images.
 * Edit image?
 * Bulk upload
 * Name = filename?
+* Show page

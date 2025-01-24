@@ -1,0 +1,46 @@
+<div id="<%= dom_id @image %>">
+  <h2>Labelling Image added on <%= @image.created_at.to_date %></h2>
+
+  <p>Click and drag on the image below to tag symbols.</p>
+
+  <div data-controller="label-image" data-image="<%= url_for @image.image_file.variant(:labelling) %>" data-labels="<%= @labels.to_s %>" data-entries="<%= @image_labels_json %>">
+    <div id="bbox_annotator"></div>
+
+    <%= form_for @image, method: :post, :url => save_labels_image_url(@image) do |form| %>
+      <template data-label-image-target='template'>
+        <%= form.fields_for :image_labels, ImageLabel.new, child_index: 'TEMPLATE_RECORD' do |label| %>
+          <%= label.hidden_field :label_name, value: "LABEL_SYMBOL" %>
+          <%= label.hidden_field :left, value: "LABEL_LEFT" %>
+          <%= label.hidden_field :top, value: "LABEL_TOP" %>
+          <%= label.hidden_field :width, value: "LABEL_WIDTH" %>
+          <%= label.hidden_field :height, value: "LABEL_HEIGHT" %>
+        <% end %>
+      </template>
+
+      <template data-label-image-target='label_header'>
+        <%= render "images/labels_table", header: true %>
+      </template>
+
+      <template data-label-image-target='label_row'>
+        <%= render "images/labels_table", header: false, image_label: nil %>
+      </template>
+      
+      <div class="container image-actions-container" style="margin: 0px">
+        <div class="image-action-box">
+          <strong>Labelling Results</strong>
+          <br><br>
+          <div id="labels">
+          </div>
+
+          <div id="labelsparams"></div>
+
+          <div class="buttons-container">
+            <%= form.submit "Save Labels", class: "new-button" %>
+            <button data-action="click->label-image#reset:prevent" class="delete-button">Remove Labels</button>
+          </div>
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+</div>

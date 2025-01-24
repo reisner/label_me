@@ -7,7 +7,13 @@
       <%= image.name %>
     </td>
     <td>
+      <%= pluralize image.image_labels.size, "label" %>
+    </td>
+    <td>
       <%= link_to "Show", image %>
+    </td>
+    <td>
+      <%= link_to "Label", label_image_path(image) %>
     </td>
   </tr>
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_13_202641) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_21_211506) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,6 +39,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_13_202641) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "image_labels", force: :cascade do |t|
+    t.string "label_name"
+    t.integer "left"
+    t.integer "top"
+    t.integer "width"
+    t.integer "height"
+    t.integer "image_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["image_id"], name: "index_image_labels_on_image_id"
+  end
+
   create_table "images", force: :cascade do |t|
     t.string "name", null: false
     t.text "notes"
@@ -48,4 +60,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_13_202641) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "image_labels", "images"
 end

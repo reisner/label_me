@@ -16,10 +16,12 @@
     <%= form.text_field :name %>
   </div>
 
-  <strong>Select JPG or PNG file Below:</strong><br>
-  <div>
-    <%= form.file_field :image_file, label: false %>
-  </div>
+  <% if include_file %>
+    <strong>Select JPG or PNG file Below:</strong><br>
+    <div>
+      <%= form.file_field :image_file, label: false %>
+    </div>
+  <% end %>
 
   <div>
     <%= form.label :notes, style: "display: block" %>

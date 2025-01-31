@@ -25,6 +25,10 @@ class Image < ApplicationRecord
     true
   end
 
+  def labelled?
+    self.image_labels.size > 0
+  end
+
   private
 
   def validate_acceptable_image

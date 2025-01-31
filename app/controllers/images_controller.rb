@@ -1,5 +1,6 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: %i[ show edit update destroy label save_labels ]
+  before_action :set_labels_json, only: %i[ show label ]
 
   # GET /images or /images.json
   def index
@@ -60,13 +61,6 @@ class ImagesController < ApplicationController
 
   def label
     @labels = Rails.configuration.x.labels
-    @image_labels_json = @image.image_labels.map do |label|
-      label.as_json(only: [ :left, :top, :width, :height ]).merge({
-        "label": label.label_name,
-        "color": "red"
-      })
-    end
-    @image_labels_json = @image_labels_json.to_json
   end
 
   def save_labels
@@ -84,6 +78,16 @@ class ImagesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_image
       @image = Image.find(params.expect(:id))
+    end
+
+    def set_labels_json
+      @image_labels_json = @image.image_labels.map do |label|
+        label.as_json(only: [ :left, :top, :width, :height ]).merge({
+          "label": label.label_name,
+          "color": "red"
+        })
+      end
+      @image_labels_json = @image_labels_json.to_json
     end
 
     # Only allow a list of trusted parameters through.

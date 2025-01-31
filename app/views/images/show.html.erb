@@ -1,14 +1,42 @@
 <p style="color: green"><%= notice %></p>
 
 <div id="<%= dom_id @image %>">
+
+
+  <h2>Showing Image added on <%= @image.created_at.to_date %><span style="color: grey"></span></h2>
+
   <p>
     <strong>Name:</strong>
     <%= @image.name %>
   </p>
 
-  <p>
-    <%= link_to image_tag(@image.image_file.variant(:thumb)), @image.image_file, target: :_blank %>
-  </p>
+  <div data-controller="show-image" data-image="<%= url_for @image.image_file.variant(:labelling) %>" data-entries="<%= @image_labels_json %>">
+    <div id="bbox_annotator"></div>
+  </div>
+
+  <br> 
+
+  <div class="image-action-box">
+    <strong>Labelling Results</strong>
+    <% if @image.labelled? %>
+      <p>
+        <%= pluralize @image.image_labels.length, "label" %> identified
+      </p>
+      <% if @image.image_labels.length > 0 %>
+        <table class="table" style="width: auto">
+          <%= render "images/labels_table", header: true %>
+          <% @image.image_labels.each do |image_label| %>      
+            <%= render "images/labels_table", header: false, image_label: image_label %>
+          <% end %>
+        </table>
+      <% end %>
+    <% else %>
+      <p>
+        image has not yet been labelled.
+      </p>
+    <% end %>
+  </div>
+
 
   <p>
     <strong>Labels:</strong>
@@ -21,9 +49,7 @@
     <strong>Notes:</strong>
     <%= @image.notes %>
   </p>
-</div>
 
-<div>
   <%= link_to "Edit this image", edit_image_path(@image) %>
   <br>
   <%= link_to "Label this image", label_image_path(@image) %>
